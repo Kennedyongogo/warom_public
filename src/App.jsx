@@ -1,3 +1,4 @@
+import { Suspense, lazy, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -5,24 +6,15 @@ import {
   Navigate,
   useLocation,
 } from "react-router-dom";
-import {
-  ThemeProvider,
-  CssBaseline,
-  Box,
-  CircularProgress,
-} from "@mui/material";
+import { ThemeProvider, CssBaseline, Box, CircularProgress } from "@mui/material";
+import { HelmetProvider } from "react-helmet-async";
 import { theme } from "./theme";
 import "./App.css";
-import React, { useState, useEffect, Suspense, lazy } from "react";
-import { HelmetProvider } from "react-helmet-async";
-import PageRoutes from "./components/PageRoutes";
 
-// Lazy load components
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
-const PostDetail = lazy(() => import("./pages/PostDetail"));
-const Pricing = lazy(() => import("./pages/Pricing"));
-const PublicPricing = lazy(() => import("./pages/PublicPricing"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions"));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -34,10 +26,7 @@ function ScrollToTop() {
   return null;
 }
 
-function App() {
-  const [user, setUser] = useState("");
-  const [drawerOpen, setDrawerOpen] = useState(true); // Drawer open by default
-
+export default function App() {
   return (
     <HelmetProvider>
       <ThemeProvider theme={theme}>
@@ -60,18 +49,11 @@ function App() {
             }
           >
             <Routes>
-              {/* Public marketing site */}
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
-              {/* Public pricing page - for non-logged in users (Explore button) */}
-              <Route path="/explore-pricing" element={<PublicPricing />} />
-              {/* Post detail page - accessible without auth for sharing */}
-              <Route
-                path="/post/:postId"
-                element={<PostDetail user={null} />}
-              />
-              {/* Authenticated routes - includes pricing with navbar */}
-              <Route path="/*" element={<PageRoutes />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Suspense>
         </Router>
@@ -79,5 +61,3 @@ function App() {
     </HelmetProvider>
   );
 }
-
-export default App;

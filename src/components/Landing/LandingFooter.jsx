@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useInquiry } from "./InquiryContext";
 import "./Landing.css";
 
 export default function LandingFooter() {
   const year = new Date().getFullYear();
+  const { openInquiry } = useInquiry();
 
   return (
     <footer className="landing-footer">
@@ -19,16 +21,19 @@ export default function LandingFooter() {
           </p>
         </div>
 
-        <nav className="landing-footer__nav" aria-label="Footer">
-          <Link to="/">Home</Link>
-          <Link to="/about">About Us</Link>
-          <a href="mailto:hello@warom.app">Inquiry</a>
+        <nav className="landing-footer__nav" aria-label="Legal">
+          <Link to="/privacy-policy">Privacy Policy</Link>
+          <Link to="/terms-and-conditions">Terms & Conditions</Link>
         </nav>
 
         <div className="landing-footer__meta">
-          <a className="landing-footer__cta" href="mailto:hello@warom.app">
+          <button
+            type="button"
+            className="landing-footer__cta"
+            onClick={openInquiry}
+          >
             Talk to us
-          </a>
+          </button>
           <p className="landing-footer__copy">© {year} WAROM</p>
         </div>
       </div>

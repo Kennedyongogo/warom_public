@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import LandingNavbar from "../components/Landing/LandingNavbar";
 import LandingFooter from "../components/Landing/LandingFooter";
+import { InquiryProvider } from "../components/Landing/InquiryContext";
 import "../components/Landing/Landing.css";
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
   }, []);
 
   return (
+    <InquiryProvider>
     <div className="landing-page">
       <Helmet>
         <title>WAROM — Meet. Chat. Belong.</title>
@@ -103,5 +105,6 @@ export default function Home() {
 
       <LandingFooter />
     </div>
+    </InquiryProvider>
   );
 }

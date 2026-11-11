@@ -3,9 +3,12 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import LandingNavbar from "../components/Landing/LandingNavbar";
 import LandingFooter from "../components/Landing/LandingFooter";
+import { InquiryProvider, useInquiry } from "../components/Landing/InquiryContext";
 import "../components/Landing/Landing.css";
 
-export default function About() {
+function AboutContent() {
+  const { openInquiry } = useInquiry();
+
   return (
     <div className="landing-page">
       <Helmet>
@@ -56,7 +59,7 @@ export default function About() {
 
           <div className="about-story__copy reveal reveal-delay-1">
             <span className="landing-kicker">Why we exist</span>
-            <h2 className="landing-title">
+            <h2 className="landing-title landing-title--calibri">
               Connection should feel safe, warm, and worth staying for.
             </h2>
             <p className="landing-copy">
@@ -145,9 +148,9 @@ export default function About() {
               inquiries. Reach out — we read every message.
             </p>
             <div className="landing-actions">
-              <a className="btn-primary" href="mailto:hello@warom.app">
+              <button type="button" className="btn-primary" onClick={openInquiry}>
                 Send an inquiry
-              </a>
+              </button>
               <Link className="btn-ghost" to="/">
                 Back home
               </Link>
@@ -158,5 +161,13 @@ export default function About() {
 
       <LandingFooter />
     </div>
+  );
+}
+
+export default function About() {
+  return (
+    <InquiryProvider>
+      <AboutContent />
+    </InquiryProvider>
   );
 }

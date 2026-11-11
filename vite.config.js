@@ -1,9 +1,7 @@
-import { defineConfig } from "vitest/config";
+import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import { VitePWA } from "vite-plugin-pwa";
-import svgr from "vite-plugin-svgr";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   base: "/",
   plugins: [
@@ -11,18 +9,16 @@ export default defineConfig({
     VitePWA({
       registerType: "autoUpdate",
       devOptions: {
-        enabled: false, // Disable PWA in dev to suppress Workbox logs
+        enabled: false,
         type: "module",
       },
       workbox: {
-        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024, // 5MB limit
+        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
         cleanupOutdatedCaches: true,
         navigateFallbackDenylist: [/^\/api/],
-        // Exclude API routes from precaching
         globIgnores: ["**/api/**"],
         runtimeCaching: [
           {
-            // All API routes go directly to network - no precaching
             urlPattern: ({ url }) => url.pathname.startsWith("/api"),
             handler: "NetworkOnly",
             options: {
@@ -30,9 +26,6 @@ export default defineConfig({
             },
           },
         ],
-        // Suppress Workbox verbose logs
-        // Note: Workbox logs are controlled by the service worker itself
-        // We'll suppress them via a custom script injection
         additionalManifestEntries: [],
       },
       includeAssets: ["warom-logo.png"],
@@ -52,20 +45,7 @@ export default defineConfig({
         ],
       },
     }),
-    svgr(),
   ],
-  test: {
-    globals: true,
-    environment: "jsdom",
-    setupFiles: "./src/setupTests.ts",
-    css: true,
-    reporters: ["verbose"],
-    coverage: {
-      reporter: ["text", "json", "html"],
-      include: ["src/**/*"],
-      exclude: [],
-    },
-  },
   optimizeDeps: {
     include: ["react-helmet-async"],
   },
@@ -87,9 +67,6 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
-    },
-    fs: {
-      strict: false,
     },
   },
 });

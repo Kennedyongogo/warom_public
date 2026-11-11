@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import { useInquiry } from "./InquiryContext";
 import "./Landing.css";
 
 export default function LandingNavbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const { openInquiry } = useInquiry();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -50,9 +52,9 @@ export default function LandingNavbar() {
           </NavLink>
         </nav>
 
-        <a className="landing-nav__cta" href="mailto:hello@warom.app">
+        <button type="button" className="landing-nav__cta" onClick={openInquiry}>
           Talk to us
-        </a>
+        </button>
 
         <button
           type="button"
@@ -84,9 +86,16 @@ export default function LandingNavbar() {
           >
             About Us
           </NavLink>
-          <a className="landing-nav__cta" href="mailto:hello@warom.app">
+          <button
+            type="button"
+            className="landing-nav__cta"
+            onClick={() => {
+              setOpen(false);
+              openInquiry();
+            }}
+          >
             Talk to us
-          </a>
+          </button>
         </div>
       ) : null}
     </header>

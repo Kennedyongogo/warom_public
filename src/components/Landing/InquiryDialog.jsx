@@ -116,14 +116,17 @@ export default function InquiryDialog({ open, onClose }) {
             aria-label="Close"
             disabled={submitting}
           >
-            ✕
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M6.4 6.4l11.2 11.2M17.6 6.4L6.4 17.6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+              />
+            </svg>
           </button>
         </header>
-
-        <p className="inquiry-dialog__lead">
-          Share a partnership note, press request, or question. We read every
-          message.
-        </p>
 
         <form className="inquiry-dialog__form" onSubmit={handleSubmit}>
           <div className="inquiry-dialog__row">
@@ -173,7 +176,7 @@ export default function InquiryDialog({ open, onClose }) {
             <span>Message</span>
             <textarea
               name="message"
-              rows={5}
+              rows={4}
               placeholder="Write your message..."
               value={form.message}
               onChange={updateField("message")}
