@@ -714,8 +714,8 @@ export default function PublicHeader() {
                 onClick={() => navigate("/")}
               >
                 <img
-                  src="/tuvibe.png"
-                  alt="Tuvibe Logo"
+                  src="/warom-logo.png"
+                  alt="WAROM Logo"
                   style={{
                     height: scrolled ? "56px" : "64px",
                     width: "auto",
@@ -744,7 +744,7 @@ export default function PublicHeader() {
                       WebkitTextFillColor: "transparent",
                     }}
                   >
-                    Tuvibe
+                    WAROM
                   </Typography>
                 </Box>
               </Box>

@@ -35,18 +35,19 @@ export default defineConfig({
         // We'll suppress them via a custom script injection
         additionalManifestEntries: [],
       },
-      includeAssets: ["favicon.ico"],
+      includeAssets: ["warom-logo.png"],
       manifest: {
-        name: "Vihiga LIMS eDAMS Admin Portal",
-        short_name: "Vihiga LIMS Admin",
-        description:
-          "Vihiga County - Electronic Development Application Management System Admin Portal",
-        theme_color: "#ffffff",
+        name: "WAROM",
+        short_name: "WAROM",
+        description: "Discover people, chat, call, and connect on WAROM",
+        theme_color: "#0B1B2B",
+        background_color: "#0B1B2B",
         icons: [
           {
-            src: "favicon.ico",
-            sizes: "any",
-            type: "image/x-icon",
+            src: "warom-logo.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "any maskable",
           },
         ],
       },

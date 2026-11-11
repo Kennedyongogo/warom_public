@@ -11,7 +11,7 @@ export default function TuVibe() {
       }}
     >
       <Typography variant="h4" sx={{ fontWeight: 700 }}>
-        TuVibe
+        WAROM
       </Typography>
     </Card>
   );

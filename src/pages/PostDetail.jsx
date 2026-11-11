@@ -161,7 +161,7 @@ const PostDetail = ({ user: userProp }) => {
         <meta property="og:image" content={getPostImage()} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:site_name" content="Tuvibe" />
+        <meta property="og:site_name" content="WAROM" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
